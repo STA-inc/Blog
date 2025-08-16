@@ -3,7 +3,7 @@ Bert是一种 NLP 预训练模型，本文不介绍 BERT 的原理，主要关�
 我的：![在这里插入图片描述](../image/00a13c819a521571c00092d22e1c7d26.png)
 
 ## 1.安装CUDA。
-CUDA的安装这里不详细说，见下图,也可以见这篇[文章](https://blog.csdn.net/shuaicenglou3032/article/details/122998560?spm=1001.2014.3001.5502)：  
+CUDA的安装这里不详细说，见下图：  
 ![在这里插入图片描述](../image/79b30ed3a8146e7edb2354ebcd1d4453.png)  
 我这里安装的是CUDA11.6  
 ## 2.安装cuDNN

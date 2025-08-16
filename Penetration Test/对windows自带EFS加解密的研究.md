@@ -19,22 +19,22 @@ EFS加密实际上综合了对称加密和不对称加密，具体流程如下�
 Windows系统里的各种私有密钥，都用相应的主密钥进行加密。Windows Vista的BitLocker加密，也用其主密钥对FVEK(全卷加密密钥)进行加密。
 
 
-(2) 为了保护主密钥，系统会对主密钥本身进行加密(使用的密钥由帐户密码派生而来)，加密后的主密钥保存在以下文件夹：
-　　%UserProfile%\Application Data\Microsoft\Protect\SID
+(2) 为了保护主密钥，系统会对主密钥本身进行加密(使用的密钥由帐户密码派生而来)，加密后的主密钥保存在以下文件夹：  
+　　```%UserProfile%\Application Data\Microsoft\Protect\SID```
 
 ## 0x03 各个密钥存放位置
-1.加密后的主密钥：
+1.加密后的主密钥：  
 ![在这里插入图片描述](../image/3f10578e97d3623576ae6ec0cdcf04f3.png)
-2.使用主密钥加密后的私钥：
-（这里选择一个文件，对其点击“加密内容以便保护数据”）
+2.使用主密钥加密后的私钥：  
+（这里选择一个文件，对其点击“加密内容以便保护数据”）  
 ![在这里插入图片描述](../image/ff199fd4d601c98cf04e0dbe9bc5b821.png)
-进行上述操作之后可以看到，%UserProfile%\Application Data\Microsoft\下生成了Crypto文件夹：
+进行上述操作之后可以看到，%UserProfile%\Application Data\Microsoft\下生成了Crypto文件夹：  
 ![在这里插入图片描述](../image/58e20d6e5e272e633cbc3c67ffa57d1c.png)
-加密后的私钥就存在Crypto文件夹中：
+加密后的私钥就存在Crypto文件夹中：  
 ![在这里插入图片描述](../image/fc288fd3423e9ef1a479f932d44c45a7.png)
-在上面的加密操作中，操作系统会提示你导出证书，这里也测试一下导出证书后删除私钥的功能是不是删除Crypto文件夹的内容：
+在上面的加密操作中，操作系统会提示你导出证书，这里也测试一下导出证书后删除私钥的功能是不是删除Crypto文件夹的内容：  
 ![在这里插入图片描述](../image/136ade76c7c67ce9b6385fec68f469c1.png)
-可以看到私钥确实因为导出证书时勾选了“如果导出成功则删除私钥”而被删掉了。
+可以看到私钥确实因为导出证书时勾选了“如果导出成功则删除私钥”而被删掉了。  
 
 
 ## 0x04 有主密钥和私钥条件下使用AdvancedEFSDataRecovery解密EFS加密的文件

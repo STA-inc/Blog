@@ -27,48 +27,48 @@ Windows系统里的各种私有密钥，都用相应的主密钥进行加密。W
 ![在这里插入图片描述](../image/3f10578e97d3623576ae6ec0cdcf04f3.png)  
 2.使用主密钥加密后的私钥：  
 （这里选择一个文件，对其点击“加密内容以便保护数据”）  
-![在这里插入图片描述](../image/ff199fd4d601c98cf04e0dbe9bc5b821.png)
+![在这里插入图片描述](../image/ff199fd4d601c98cf04e0dbe9bc5b821.png)  
 进行上述操作之后可以看到，%UserProfile%\Application Data\Microsoft\下生成了Crypto文件夹：  
-![在这里插入图片描述](../image/58e20d6e5e272e633cbc3c67ffa57d1c.png)
+![在这里插入图片描述](../image/58e20d6e5e272e633cbc3c67ffa57d1c.png)  
 加密后的私钥就存在Crypto文件夹中：  
-![在这里插入图片描述](../image/fc288fd3423e9ef1a479f932d44c45a7.png)
+![在这里插入图片描述](../image/fc288fd3423e9ef1a479f932d44c45a7.png)  
 在上面的加密操作中，操作系统会提示你导出证书，这里也测试一下导出证书后删除私钥的功能是不是删除Crypto文件夹的内容：  
-![在这里插入图片描述](../image/136ade76c7c67ce9b6385fec68f469c1.png)
+![在这里插入图片描述](../image/136ade76c7c67ce9b6385fec68f469c1.png)  
 可以看到私钥确实因为导出证书时勾选了“如果导出成功则删除私钥”而被删掉了。  
 
 
 ## 0x04 有主密钥和私钥条件下使用AdvancedEFSDataRecovery解密EFS加密的文件
 上面的操作中，我把主密钥和私钥以及加密文件拷贝了出来，然后另起一个账户，尝试使AdvancedEFSDataRecovery解密。  
 首先切换到另一个账户test:  
-![在这里插入图片描述](../image/e9c4e88a1a9552e5a34f0079a3e81588.png)
+![在这里插入图片描述](../image/e9c4e88a1a9552e5a34f0079a3e81588.png)  
 可以看到在test账户下，被加密的文件是绿色的，无法访问：  
-![在这里插入图片描述](../image/e9d8e4170de1f98146009dda67793059.png)
-![在这里插入图片描述](../image/ec62dc0482d27c3745080631de3c3784.png)
+![在这里插入图片描述](../image/e9d8e4170de1f98146009dda67793059.png)  
+![在这里插入图片描述](../image/ec62dc0482d27c3745080631de3c3784.png)  
 我们使用当前用户安装AdvancedEFSDataRecovery：  
-![在这里插入图片描述](../image/04ffebd1be9583c3d5f9dee5fcb2328e.png)
+![在这里插入图片描述](../image/04ffebd1be9583c3d5f9dee5fcb2328e.png)  
 ### 1.使用证书解密：
 由于之前导出过证书，先测试一下证书解密：  
-![在这里插入图片描述](../image/5c880c0db1fa229bac6195e4acb7d127.png)
+![在这里插入图片描述](../image/5c880c0db1fa229bac6195e4acb7d127.png)  
 上面的密码是之前导出证书时设置的密码。  
 填入证书路径和密码之后按回车，开始扫描：  
-![在这里插入图片描述](../image/dc9f5caf5c41bfb1656ee547321b83bd.png)
+![在这里插入图片描述](../image/dc9f5caf5c41bfb1656ee547321b83bd.png)  
 使用证书成功解密：  
-![在这里插入图片描述](../image/b66ab1de90987e681ec98a8e21113658.png)
-![在这里插入图片描述](../image/122d52d3383aa30ebb36dca0fe9b62c3.png)
+![在这里插入图片描述](../image/b66ab1de90987e681ec98a8e21113658.png)  
+![在这里插入图片描述](../image/122d52d3383aa30ebb36dca0fe9b62c3.png)  
 ### 2.使用私钥解密：
 上面使用证书解密是最简单的情况，但是实际上很多人不会导出证书，就纯手贱要去点一下这个加密。  
 现在假设我们手上有主密钥，有私钥，在这种情况下测试使用AdvancedEFSDataRecovery进行恢复：  
 之前我们将主密钥和私钥复制了一份放在D盘：  
-![在这里插入图片描述](../image/d8549f032c58f6143896d1c277bf6478.png)
+![在这里插入图片描述](../image/d8549f032c58f6143896d1c277bf6478.png)  
 然后回到AdvancedEFSDataRecovery，选择“我没有证书，所以程序应当搜索硬盘以寻找加密密钥”：  
-![在这里插入图片描述](../image/ff857fd80be871f4cbaa3e4f9ad87e90.png)
+![在这里插入图片描述](../image/ff857fd80be871f4cbaa3e4f9ad87e90.png)  
 这里把“按扇区扫描”勾上：  
-![在这里插入图片描述](../image/b2ca10b7f45dbae591e3853649ff554c.png)
+![在这里插入图片描述](../image/b2ca10b7f45dbae591e3853649ff554c.png)  
 
 然后得到一个结果，要求输入用户名和密码，这里的用户名和密码必须是加密文件的那个windows账号的用户名和密码，我这里就是jizong/123456。然后提示一个私钥被发现且被成功解密，现在你可以点击next按钮去扫描加密文件：  
-![在这里插入图片描述](../image/924b94d5cbaf2c074bcb5087363032ea.png)
-扫描的结果，然后点击next：
-![在这里插入图片描述](../image/b10bb7620d1506d7747df39b20702087.png)
+![在这里插入图片描述](../image/924b94d5cbaf2c074bcb5087363032ea.png)  
+扫描的结果，然后点击next：  
+![在这里插入图片描述](../image/b10bb7620d1506d7747df39b20702087.png)  
 也能解密成功。  
 
 ## 0x05 重装系统及私钥丢失情况下的EFS解密（看运气）

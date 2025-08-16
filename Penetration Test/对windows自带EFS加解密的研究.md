@@ -13,14 +13,14 @@ EFS加密实际上综合了对称加密和不对称加密，具体流程如下�
 除了上面的步骤，操作系统还会对EFS添加两层保护措施：  
 
 (1) Windows会用64字节的主密钥(Master Key)对私钥进行加密，这个私钥并非系统安装之后就存在，而是第一次进行加密时生成，下图可以看到，刚安装的新系统中不存在Crypto文件夹。加密后的私钥保存在以下文件夹：
-　　%UserProfile%\Application Data\Microsoft\Crypto\RSA\SID
-　　![在这里插入图片描述](../image/aa1ddc2fda8304602681ec71d6487459.png)
+　　```%UserProfile%\Application Data\Microsoft\Crypto\RSA\SID```
+　　![在这里插入图片描述](../image/aa1ddc2fda8304602681ec71d6487459.png)  
 
-Windows系统里的各种私有密钥，都用相应的主密钥进行加密。Windows Vista的BitLocker加密，也用其主密钥对FVEK(全卷加密密钥)进行加密。
+Windows系统里的各种私有密钥，都用相应的主密钥进行加密。Windows Vista的BitLocker加密，也用其主密钥对FVEK(全卷加密密钥)进行加密。  
 
 
 (2) 为了保护主密钥，系统会对主密钥本身进行加密(使用的密钥由帐户密码派生而来)，加密后的主密钥保存在以下文件夹：  
-　　```%UserProfile%\Application Data\Microsoft\Protect\SID```
+　　```%UserProfile%\Application Data\Microsoft\Protect\SID```  
 
 ## 0x03 各个密钥存放位置
 1.加密后的主密钥：  

@@ -12,8 +12,8 @@ EFS加密实际上综合了对称加密和不对称加密，具体流程如下�
 (3) 要想解密文件，首先必须用当前用户的私钥去解密FEK，然后用FEK去解密文件。  
 除了上面的步骤，操作系统还会对EFS添加两层保护措施：  
 
-(1) Windows会用64字节的主密钥(Master Key)对私钥进行加密，这个私钥并非系统安装之后就存在，而是第一次进行加密时生成，下图可以看到，刚安装的新系统中不存在Crypto文件夹。加密后的私钥保存在以下文件夹：
-　　```%UserProfile%\Application Data\Microsoft\Crypto\RSA\SID```
+(1) Windows会用64字节的主密钥(Master Key)对私钥进行加密，这个私钥并非系统安装之后就存在，而是第一次进行加密时生成，下图可以看到，刚安装的新系统中不存在Crypto文件夹。加密后的私钥保存在以下文件夹：  
+　　```%UserProfile%\Application Data\Microsoft\Crypto\RSA\SID```  
 　　![在这里插入图片描述](../image/aa1ddc2fda8304602681ec71d6487459.png)  
 
 Windows系统里的各种私有密钥，都用相应的主密钥进行加密。Windows Vista的BitLocker加密，也用其主密钥对FVEK(全卷加密密钥)进行加密。  
@@ -24,7 +24,7 @@ Windows系统里的各种私有密钥，都用相应的主密钥进行加密。W
 
 ## 0x03 各个密钥存放位置
 1.加密后的主密钥：  
-![在这里插入图片描述](../image/3f10578e97d3623576ae6ec0cdcf04f3.png)
+![在这里插入图片描述](../image/3f10578e97d3623576ae6ec0cdcf04f3.png)  
 2.使用主密钥加密后的私钥：  
 （这里选择一个文件，对其点击“加密内容以便保护数据”）  
 ![在这里插入图片描述](../image/ff199fd4d601c98cf04e0dbe9bc5b821.png)
